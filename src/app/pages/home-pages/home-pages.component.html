@@ -1,6 +1,27 @@
 <h1>Home Page</h1>
 <h3>¡Bienvenido!</h3>
+<ng-container *ngIf="contactoSeleccionado; else noSeleccionado">
+  <h4>Has seleccionado a: {{ contactoSeleccionado.nombre }}</h4>
+</ng-container>
+<ng-template #noSeleccionado>
+  <div>
+    <p>Seleeciona a un contacto</p>
+  </div>
+</ng-template>
 
-<a routerLink="/login">Iniciar sesión</a>
+<!-- ?Si NO esta iniciada sesion se debe mostrar -->
+<a routerLink="/login" *ngIf="!token">Iniciar sesión</a>
 
-<button (click)="navegarAContactos()">Ver tus contactos</button>
+<button (click)="navegarAContactos()" class="pretty-button">
+  Ver todos tus contactos
+</button>
+
+<div>
+  <p>Filtros:</p>
+
+  <!-- ?Otra forma de recuperar información utilizando queryParams pero directamente desde el HTML -->
+  <!-- *Importar ActivaterRoute en contacts.ts -->
+
+  <a [routerLink]="['/contacts']" [queryParams]="{ sexo: 'hombre' }">Hombres</a>
+  <a [routerLink]="['/contacts']" [queryParams]="{ sexo: 'mujer' }">Mujeres</a>
+</div>

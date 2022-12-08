@@ -29,6 +29,7 @@ const routes: Routes = [
         component: HomePagesComponent, // aqui podriamos cargar otro componente
       },
     ],
+    canActivate: [AuthGuard],
   },
   // Ruta
   {

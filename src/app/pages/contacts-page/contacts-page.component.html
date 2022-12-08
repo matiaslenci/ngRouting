@@ -1,9 +1,23 @@
 <h1>Tus contactos</h1>
 
- <div *ngFor="let contacto of listaContactos; let i = index">
-  <div routerLink="{{contacto.id}}" routerLinkActive="router-link-active" >
+<div *ngFor="let contacto of listaContactos; let i = index">
+  <div
+    class="contacto"
+    routerLink="{{ contacto.id }}"
+    routerLinkActive="router-link-active"
+    [state]="{ data: contacto }"
+  >
     <h6>{{ contacto.nombre }}</h6>
+    <!-- ?Boton para volver al home -->
+    <button (click)="volverAHome(contacto)" class="pretty-button">
+      Enviar contacto
+    </button>
   </div>
 </div>
 
+<ng-container *ngIf="filtroSexo != 'todos'; else listaCompleta">
+  <p>Lista filtrada, mostrando solo {{ filtroSexo }}</p>
+</ng-container>
+<ng-template #listaCompleta> </ng-template>
 
+<a [routerLink]="['/home']">Volver a Home</a>

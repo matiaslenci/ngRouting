@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 // *Importamos Router para inyectarlo en la función
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
+
+import { IContacto } from 'src/app/models/contact.intefaces';
 
 @Component({
   selector: 'app-home-pages',
@@ -8,14 +10,37 @@ import { Router } from '@angular/router';
   styleUrls: ['./home-pages.component.scss'],
 })
 export class HomePagesComponent implements OnInit {
-  constructor(private router: Router/* Inyectamos Router */) {}
+  // ?Guardamos la información del contacto en una variable
+  contactoSeleccionado: IContacto | undefined = history.state.data;
 
-  ngOnInit(): void {}
+  token: string | null = null;
+  pretty: any;
+
+  constructor(private router: Router /* Inyectamos Router */) {}
+
+  ngOnInit(): void {
+    // *Comprobar si el token existe en la sessionStorage
+    this.token = sessionStorage.getItem('token');
+
+    // ?Leemos el estado del historial de navegación cuando se inicie el componente, si existe lo recupera
+    if (history.state.data) {
+      this.contactoSeleccionado = history.state.data;
+      console.log(this.contactoSeleccionado);
+    }
+  }
 
   /**
    ** Creamos un evento para navegar a la pag de Contactos
    */
   navegarAContactos(): void {
-    this.router.navigate(['contacts']);
+    // ?Pasar informacion con queryParams
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        //? Filtra los contactos que sean mujeres
+       
+      },
+    };
+
+    this.router.navigate(['contacts'], navigationExtras);
   }
 }

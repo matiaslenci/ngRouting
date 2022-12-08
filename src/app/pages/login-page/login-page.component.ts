@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'; //* importamos el Router
+//* importamos el Router
+import { Router } from '@angular/router';
+//* importamos el servicio
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -7,8 +10,13 @@ import { Router } from '@angular/router'; //* importamos el Router
   styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent implements OnInit {
-  // Hacemos un private router
-  constructor(private router: Router) {}
+  
+  //? Variables de input
+  email: string = '';
+  password: string = '';
+
+  // *Hacemos un private router e inyectamos el servicio que creamos
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
     let token = sessionStorage.getItem('token');
@@ -19,8 +27,19 @@ export class LoginPageComponent implements OnInit {
   }
 
   loginUser(): void {
-    //* sessionStorage añadido para autentificación
-    sessionStorage.setItem('token', '12345678');
-    this.router.navigate(['contacts']);
+    //? Proceso de autentificación con un servicio
+    //* Servicio - variable - datos de login(email, password) - sucribirse al evento
+    this.authService.login(this.email, this.password).subscribe(
+      (response) => {
+        if (response.token) {
+          sessionStorage.setItem('token', response.token);
+          this.router.navigate(['home']);
+        }
+      },
+      (error) => {
+        console.error(`Ha ocurrido un error al hacer el login: ${error}`);
+      },
+      () => console.info('Peticion de login terminada')
+    );
   }
 }
