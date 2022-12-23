@@ -1,7 +1,3 @@
-<h1>Pagina de Login</h1>
-<!-- TODO: Hacer un formulario de login -->
-<input [(ngModel)]="email" type="email" placeholder="Email"/>
-<input [(ngModel)]="password" type="password" placeholder="Password"/>
-
-
-<button (click)="loginUser()" ngClass="pretty-button">Acceder</button>
+<!--* Login form -->
+<!--? LoginAction va entre () porq es un output  -->
+<app-login-form (loginAction)="loginUser($event)"></app-login-form>

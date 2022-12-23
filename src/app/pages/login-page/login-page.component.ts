@@ -10,11 +10,6 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent implements OnInit {
-  
-  //? Variables de input
-  email: string = '';
-  password: string = '';
-
   // *Hacemos un private router e inyectamos el servicio que creamos
   constructor(private router: Router, private authService: AuthService) {}
 
@@ -26,10 +21,12 @@ export class LoginPageComponent implements OnInit {
     }
   }
 
-  loginUser(): void {
+  loginUser(value: any): void {
+    let { email, password } = value;
+
     //? Proceso de autentificación con un servicio
     //* Servicio - variable - datos de login(email, password) - sucribirse al evento
-    this.authService.login(this.email, this.password).subscribe(
+    this.authService.login(email, password).subscribe(
       (response) => {
         if (response.token) {
           sessionStorage.setItem('token', response.token);

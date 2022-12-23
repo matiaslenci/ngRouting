@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { MaterialModule } from './modules/material/material.module';
+
 // ?Importaciones para servicios
-import { FormsModule } from '@angular/forms'; // Para el formulario
 import { HttpClientModule } from '@angular/common/http'; // Para solicitar apis
 
 // ?Paginas de rutas
@@ -14,6 +15,13 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+//? Formularios reactivos
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginFormComponent } from './components/login-form/login-form.component';
+
+//?
+import { NombreCompletoPipe } from './pipes/nombre-completo.pipe'; 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,8 +30,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NotFoundPageComponent,
     ContactDetailPageComponent,
     ContactsPageComponent,
+    LoginFormComponent,
+    NombreCompletoPipe,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, BrowserAnimationsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    //* ReactiveForms
+    ReactiveFormsModule,
+    FormsModule,
+    //* Modulo personalizado de angular material
+    MaterialModule
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
