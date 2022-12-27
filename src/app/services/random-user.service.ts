@@ -31,24 +31,22 @@ export class RandomUserService {
     );
   }
 
-  //? Lista de contactos
-  obtenerRandomContacts(n: number):Observable<Results[]> {
+  //? Lista de contactos, recibe un numero de respuestas y si recibe un sexo por queryParams lo filtra
+  obtenerRandomContacts(n: number,sexo?:string):Observable<Results> {
     // Guardamos en una const los pramatros que le pasaremos a nuestra petición http
-    const opciones: HttpParams = new HttpParams().set('results', n);
+    let params: HttpParams = new HttpParams().set('results', n);
+    //! Si recibimos sexo lo filtramos
+    if (sexo){
+      console.log('Filtrado por mujer / hombre');
+      // En ves de usar un set utilizamos un append para agregar el gender a los datos que ya estabamos solicitando
+      params = params.append('gender', sexo);
+    }
     // Le pasamos los parametros
     return this.http
-      .get<Results[]>('https://randomuser.me/api', { params: opciones })
+      .get<Results>('https://randomuser.me/api', { params: params })
       .pipe(
         retry(2), //? numero de reintentos de peticiones
         catchError(this.handleError) //? sacamos error si algo falla
       );
-  }
-
-  //? Lista de contactos filtrada
-  obtenerRandomContactsPorGenero(sexo: string):Observable<Results> {
-    const opciones: HttpParams = new HttpParams().set('gender', sexo);
-    return this.http
-      .get<Results>('https://randomuser.me/api', { params: opciones })
-      .pipe(retry(2), catchError(this.handleError));
   }
 }

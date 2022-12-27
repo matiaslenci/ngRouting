@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // *Importamos Router para inyectarlo en la función
 import { NavigationExtras, Router } from '@angular/router';
-
-import { IContacto } from 'src/app/models/contact.intefaces';
+import { IRandomContact } from 'src/app/models/randomuser';
 
 @Component({
   selector: 'app-home-pages',
@@ -11,7 +10,7 @@ import { IContacto } from 'src/app/models/contact.intefaces';
 })
 export class HomePagesComponent implements OnInit {
   // ?Guardamos la información del contacto en una variable
-  contactoSeleccionado: IContacto | undefined = history.state.data;
+  contactoSeleccionado: IRandomContact | undefined = history.state.data;
 
   token: string | null = null;
   pretty: any;

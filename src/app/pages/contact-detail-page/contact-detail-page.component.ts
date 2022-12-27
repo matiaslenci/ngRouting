@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'; // Nos va a decir el contenido que hay en la url
 import { IContacto } from 'src/app/models/contact.intefaces';
+import { IRandomContact } from 'src/app/models/randomuser';
 
 @Component({
   selector: 'app-contact-detail-page',
@@ -11,13 +12,7 @@ export class ContactDetailPageComponent implements OnInit {
   // *Este id es el vamos a capturar(podria ser el contacto completo o cualquier cosa)
   id: any | undefined;
 
-  contacto: IContacto = {
-    id: 0,
-    nombre: '',
-    email: '',
-    sexo: '',
-    apellidos: '',
-  };
+  contacto: IRandomContact|undefined;
 
   filtroPrevio: string = 'todos';
 
