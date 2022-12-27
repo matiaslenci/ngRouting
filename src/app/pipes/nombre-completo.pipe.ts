@@ -6,6 +6,6 @@ import { IRandomContact } from '../models/randomuser';
 })
 export class NombreCompletoPipe implements PipeTransform {
   transform(contacto: IRandomContact, ...args: unknown[]): string {
-    return `${contacto?.name?.first} ${contacto?.name?.last}`;
+    return `${contacto.name.first} ${contacto.name.last}`;
   }
 }
