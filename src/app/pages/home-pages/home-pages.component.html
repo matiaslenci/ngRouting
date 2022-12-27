@@ -12,11 +12,11 @@
 <!-- ?Si NO esta iniciada sesion se debe mostrar -->
 <a routerLink="/login" *ngIf="!token">Iniciar sesión</a>
 
-<button (click)="navegarAContactos()" class="pretty-button">
+<button (click)="navegarAContactos()" class="button" mat-raised-button color="primary">
   Ver todos tus contactos
 </button>
 
-<div>
+<div class="separador">
   <p>Filtros:</p>
 
   <!-- ?Otra forma de recuperar información utilizando queryParams pero directamente desde el HTML -->
@@ -24,4 +24,8 @@
 
   <a [routerLink]="['/contacts']" [queryParams]="{ sexo: 'hombre' }">Hombres</a>
   <a [routerLink]="['/contacts']" [queryParams]="{ sexo: 'mujer' }">Mujeres</a>
+</div>
+<div class="separador">
+  <h4>Generador de contactos aleatorios:</h4>
+  <button [routerLink]="['/random']" mat-raised-button>Ir a generador</button>
 </div>
