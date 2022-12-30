@@ -1,5 +1,10 @@
 <h1>Tus contactos</h1>
 
+<div *ngIf="cargando">
+  <mat-spinner></mat-spinner>
+  <h4>Cargando lista de contactos...</h4>
+</div>
+
 <div *ngFor="let contacto of listaRandomContact; let i = index">
   <div
     class="contacto"
@@ -18,10 +23,14 @@
   </div>
 </div>
 
-<ng-container *ngIf="filtroSexo == 'female'||filtroSexo == 'male'; else listaCompleta">
+<ng-container
+  *ngIf="filtroSexo == 'female' || filtroSexo == 'male'; else listaCompleta"
+>
   <p *ngIf="filtroSexo == 'female'">Lista filtrada, mostrando solo mujeres</p>
   <p *ngIf="filtroSexo == 'male'">Lista filtrada, mostrando solo hombres</p>
 </ng-container>
-<ng-template #listaCompleta> </ng-template>
+<ng-template #listaCompleta>
+   <p>Mostrando lista de contactos completa</p>
+</ng-template>
 
-<a [routerLink]="['/home']">Volver a Home</a>
+<a [routerLink]="['/dashboard/home']">Volver a Home</a>

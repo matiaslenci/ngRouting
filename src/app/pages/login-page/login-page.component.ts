@@ -17,7 +17,7 @@ export class LoginPageComponent implements OnInit {
     let token = sessionStorage.getItem('token');
     // ? Si el usuario ya esta logeado no carga el login sino que carga el home
     if (token) {
-      this.router.navigate(['home']);
+      this.router.navigate(['/dahsboard/home']);
     }
   }
 
@@ -30,7 +30,7 @@ export class LoginPageComponent implements OnInit {
       (response) => {
         if (response.token) {
           sessionStorage.setItem('token', response.token);
-          this.router.navigate(['home']);
+          this.router.navigate(['/dashboard/home']);
         }
       },
       (error) => {

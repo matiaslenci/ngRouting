@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // importamos Router
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router'; // Nos va a decir el contenido que hay en la url
+import { Router } from '@angular/router';
 // Importamos la interface de IContacto
 import { IContacto } from 'src/app/models/contact.intefaces';
 // importamos navigationExtras
@@ -14,6 +15,8 @@ import { IRandomContact, Results } from 'src/app/models/randomuser';
   styleUrls: ['./contacts-page.component.scss'],
 })
 export class ContactsPageComponent implements OnInit {
+  //? Variable para saber si el contenido esta cargando
+  cargando: boolean = true;
   //? Variable para filtro por sexo
   filtroSexo: string = 'todos';
   listaRandomContact: IRandomContact[] = [];
@@ -31,19 +34,23 @@ export class ContactsPageComponent implements OnInit {
       console.log('QueryParams: ', params.sexo);
       if (params.sexo) {
         this.filtroSexo = params.sexo;
-        if (params.sexo == 'female' || params.sexo == 'male') {          
+        if (params.sexo == 'female' || params.sexo == 'male') {
           //? Entonces filtramos por sexo
-          this.randomUserService.obtenerRandomContacts(10,params.sexo).subscribe({
-            next: (response: Results) => {
-              response.results.forEach((randomContact: IRandomContact) => {
-                this.listaRandomContact.push(randomContact);
-              });
-              console.log(this.listaRandomContact);
-            },
-            error: (error) => console.error(`${error}`),
-            complete: () =>
-              console.info('Petición de random contact completada'),
-          });
+          this.randomUserService
+            .obtenerRandomContacts(10, params.sexo)
+            .subscribe({
+              next: (response: Results) => {
+                response.results.forEach((randomContact: IRandomContact) => {
+                  this.listaRandomContact.push(randomContact);
+                });
+                console.log(this.listaRandomContact);
+              },
+              error: (error: any) => console.error(`${error}`),
+              complete: () => {
+                console.info('Petición de random contact completada');
+                this.cargando = false;
+              },
+            });
         } else {
           //? Implementacion para obtener la lista de contactos aleatoria
           this.randomUserService.obtenerRandomContacts(10).subscribe({
@@ -53,9 +60,11 @@ export class ContactsPageComponent implements OnInit {
               });
               console.log(this.listaRandomContact);
             },
-            error: (error) => console.error(`${error}`),
-            complete: () =>
-              console.info('Petición de random contact completada'),
+            error: (error: any) => console.error(`${error}`),
+            complete: () => {
+              console.info('Petición de random contact completada');
+              this.cargando = false;
+            },
           });
         }
       }
@@ -74,6 +83,6 @@ export class ContactsPageComponent implements OnInit {
     };
 
     // *sistema de enrutado
-    this.router.navigate(['/home'], navigationExtras);
+    this.router.navigate(['/dashboard/home'], navigationExtras);
   }
 }

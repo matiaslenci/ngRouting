@@ -36,10 +36,10 @@ export class HomePagesComponent implements OnInit {
     let navigationExtras: NavigationExtras = {
       queryParams: {
         //? Filtra los contactos que sean mujeres
-       
+       sexo:'todos'
       },
     };
 
-    this.router.navigate(['contacts'], navigationExtras);
+    this.router.navigate(['dashboard/contacts'], navigationExtras);
   }
 }

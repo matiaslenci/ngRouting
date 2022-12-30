@@ -19,10 +19,10 @@
   <!-- ?Otra forma de recuperar información utilizando queryParams pero directamente desde el HTML -->
   <!-- *Importar ActivaterRoute en contacts.ts -->
 
-  <a [routerLink]="['/contacts']" [queryParams]="{ sexo: 'male' }">Hombres</a>
-  <a [routerLink]="['/contacts']" [queryParams]="{ sexo: 'female' }">Mujeres</a>
+  <a [routerLink]="['/dashboard/contacts']" [queryParams]="{ sexo: 'male' }">Hombres</a>
+  <a [routerLink]="['/dashboard/contacts']" [queryParams]="{ sexo: 'female' }">Mujeres</a>
 </div>
 <div class="separador">
   <h4>Generador de contactos aleatorios:</h4>
-  <button [routerLink]="['/random']" mat-raised-button>Ir a generador</button>
+  <button [routerLink]="['/dashboard/random']" mat-raised-button>Ir a generador</button>
 </div>
