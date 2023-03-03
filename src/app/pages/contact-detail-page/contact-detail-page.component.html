@@ -1,5 +1,13 @@
-<!-- TODO: Lo ideal seria hacer un ng template de que si no obtiene el id muestre un mensaje predeterminado  -->
-<h1>Contacto: {{id}}</h1>
+<ng-container *ngIf="contacto; else errorContacto">
+  <h1>Contacto: {{ id }}</h1>
+  <h2>Nombre: {{ contacto | nombreCompleto }}</h2>
+  <h3>Email: {{ contacto.email }}</h3>
+</ng-container>
 
-<h2>Nombre: </h2>
-<h2>Email: </h2>
+<ng-template #errorContacto>
+  <h2>No se encuentra el contacto seleccionado😥</h2>
+</ng-template>
+
+<a [routerLink]="['/dashboard/contacts']" [queryParams]="{ sexo: filtroPrevio }"
+  >Volver a lista de contactos</a
+>

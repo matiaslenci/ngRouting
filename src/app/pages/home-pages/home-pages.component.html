@@ -1,6 +1,28 @@
 <h1>Home Page</h1>
 <h3>¡Bienvenido!</h3>
+<ng-container *ngIf="contactoSeleccionado; else noSeleccionado">
+  <h4>Has seleccionado a: {{ contactoSeleccionado.name.first }}</h4>
+</ng-container>
+<ng-template #noSeleccionado>
+  <div>
+    <p>Seleeciona a un contacto</p>
+  </div>
+</ng-template>
 
-<a routerLink="/login">Iniciar sesión</a>
+<button (click)="navegarAContactos()" class="button" mat-raised-button color="primary">
+  Ver todos tus contactos
+</button>
 
-<button (click)="navegarAContactos()">Ver tus contactos</button>
+<div class="separador">
+  <p>Filtros:</p>
+
+  <!-- ?Otra forma de recuperar información utilizando queryParams pero directamente desde el HTML -->
+  <!-- *Importar ActivaterRoute en contacts.ts -->
+
+  <a [routerLink]="['/dashboard/contacts']" [queryParams]="{ sexo: 'male' }">Hombres</a>
+  <a [routerLink]="['/dashboard/contacts']" [queryParams]="{ sexo: 'female' }">Mujeres</a>
+</div>
+<div class="separador">
+  <h4>Generador de contactos aleatorios:</h4>
+  <button [routerLink]="['/dashboard/random']" mat-raised-button>Ir a generador</button>
+</div>

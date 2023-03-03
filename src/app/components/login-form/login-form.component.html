@@ -1,0 +1,48 @@
+<!-- Login form utilizando angular material -->
+<mat-card>
+  <!-- Cabecera de la tarjeta -->
+  <mat-card-header>
+    <mat-card-title>Login👤</mat-card-title>
+    <mat-card-subtitle>Accede a tu cuenta</mat-card-subtitle>
+  </mat-card-header>
+  <!--* Contenido -->
+  <mat-card-content>
+    <form [formGroup]="loginForm" (submit)="submitLogin()">
+      <!--*Email  -->
+      <mat-form-field>
+        <input matInput placeholder="Email📧" formControlName="email" />
+        <mat-error *ngIf="email?.errors?.['required'] && email?.touched">
+          El campo email es obligatorio
+        </mat-error>
+        <mat-error *ngIf="email?.errors?.['email'] && email?.touched">
+          El formato de email es obligatorio
+        </mat-error>
+      </mat-form-field>
+      <!--* Password  -->
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Password🔒"
+          type="password"
+          formControlName="password"
+        />
+        <mat-error *ngIf="password?.errors?.['required']">
+          El campo email es obligatorio
+        </mat-error>
+      </mat-form-field>
+
+      <!--* Boton para hacer sumbit en el formulario-->
+      <!--! Desabilitado si el formulario de login es invalido  -->
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="loginForm.invalid"
+      >
+        Login
+      </button>
+    </form>
+  </mat-card-content>
+
+  <!--* Footer -->
+</mat-card>

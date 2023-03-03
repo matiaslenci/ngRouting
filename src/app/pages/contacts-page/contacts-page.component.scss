@@ -1,0 +1,37 @@
+/* Estilo base para el botón */
+.pretty-button {
+  /* Colores y borde redondeado */
+  background-color: #ee6565;
+  color: white;
+  border-radius: 5px;
+  /* Tamaño y fuente */
+  font-size: 15px;
+  font-family: sans-serif;
+  /* Espaciado y alineación */
+  padding: 10px 20px;
+  text-align: center;
+  /* Otras propiedades */
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Estilo para cuando el ratón está encima del botón */
+.pretty-button:hover {
+  /* Cambiar el fondo y agregar un borde sombreado */
+  background-color: #2980b9;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.contacto {
+  font-size: large;
+  :hover {
+    cursor: pointer;
+    color:#ee6565 ;
+  }
+}
+
+a {
+  display: block;
+  padding: 1rem 0rem;
+  text-decoration: none;
+}

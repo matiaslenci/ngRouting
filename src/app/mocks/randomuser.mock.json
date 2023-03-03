@@ -1,0 +1,66 @@
+{
+    "results": [
+        {
+            "gender": "male",
+            "name": {
+                "title": "Monsieur",
+                "first": "Nicholas",
+                "last": "Lemoine"
+            },
+            "location": {
+                "street": {
+                    "number": 4116,
+                    "name": "Rue de L'Abbé-De-L'Épée"
+                },
+                "city": "Landiswil",
+                "state": "Basel-Landschaft",
+                "country": "Switzerland",
+                "postcode": 7140,
+                "coordinates": {
+                    "latitude": "-58.5929",
+                    "longitude": "-35.9006"
+                },
+                "timezone": {
+                    "offset": "+9:30",
+                    "description": "Adelaide, Darwin"
+                }
+            },
+            "email": "nicholas.lemoine@example.com",
+            "login": {
+                "uuid": "b8e68724-697e-4ed9-b029-acb1a72ee52f",
+                "username": "blackmeercat708",
+                "password": "134679",
+                "salt": "BLB65YLC",
+                "md5": "abb55b491148941f0dfbb7b519da8e90",
+                "sha1": "571c255696ff259a68aa511aee89cf7feafd8d62",
+                "sha256": "87bbaa73aeec551cdbfabffedad6a274c3b93a71723049e3645f5bcf344d83c8"
+            },
+            "dob": {
+                "date": "1988-10-22T08:59:55.678Z",
+                "age": 34
+            },
+            "registered": {
+                "date": "2016-08-20T09:11:38.474Z",
+                "age": 6
+            },
+            "phone": "077 189 31 99",
+            "cell": "078 297 92 00",
+            "id": {
+                "name": "AVS",
+                "value": "756.0909.9400.08"
+            },
+            "picture": {
+                "large": "https://randomuser.me/api/portraits/men/10.jpg",
+                "medium": "https://randomuser.me/api/portraits/med/men/10.jpg",
+                "thumbnail": "https://randomuser.me/api/portraits/thumb/men/10.jpg"
+            },
+            "nat": "CH"
+        }
+    ],
+    "info": {
+        "seed": "368eff835367ecd7",
+        "results": 1,
+        "page": 1,
+        "version": "1.4"
+    }
+}
